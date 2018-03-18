@@ -6,21 +6,22 @@ import FlatButton from 'material-ui/FlatButton';
 
 
 
-const Login = ({ handleSubmit}) => {
+const Login = ({ getData, getUser, getPass}) => {
     return (
         <div>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={getData} method='post' >
                 <div>
                     <TextField
                         name="username"
                         floatingLabelText="username"
                         type="text"
+                        onChange={getUser}
                     /><br />
                     <TextField
                         name="password"
                         floatingLabelText="password"
                         type="password"
-
+                        onChange={getPass}
                     /><br />
                 </div>
                 <FlatButton
@@ -34,7 +35,9 @@ const Login = ({ handleSubmit}) => {
 };
 
 Login.propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
+    getData: PropTypes.func.isRequired,
+    getPass: PropTypes.func.isRequired,
+    getUser: PropTypes.func.isRequired,
 }
 
 export default Login;

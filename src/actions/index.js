@@ -1,4 +1,4 @@
-import { USER_DATA, PRUEBA } from "./../constants/";
+import { USER_DATA, PRUEBA, PASS_DATA, TOKEN_DATA } from "./../constants/";
 //import { urlLogin } from './../api/';
 //import axios from 'axios';
 
@@ -6,6 +6,8 @@ import { USER_DATA, PRUEBA } from "./../constants/";
 //esto es una accion creator
 
 export const addUserData = payload => ({ type: USER_DATA, payload });
+export const addPassData = payload => ({ type: PASS_DATA, payload });
+export const addTokenData = payload => ({ type: TOKEN_DATA, payload });
 export const addPrueba = payload => ({ type: PRUEBA, payload });
 
 
