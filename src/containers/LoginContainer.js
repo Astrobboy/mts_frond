@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Loginform from './../components/Login';
+import Loginform from './../components/Login/';
 import PropTypes from 'prop-types';
 import { withRouter } from "react-router-dom";
-
 import * as actions from './../actions';
 import { bindActionCreators } from 'redux';
+
+import request from 'request';
 
 const user = '';
 const password = ''
@@ -23,6 +24,21 @@ class LoginContainer extends Component {
                 body:JSON.stringify( data)     
             };  
         
+        request.post({
+            url: 'http://localhost:3001/users/login',
+            method: "POST",
+            json: true,   // <--Very important!!!
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: data
+        }, function (error, response, body) {
+            console.log(response.request.getHeader('x-auth'));
+            console.log(body);
+            
+            
+        });
+     
            /* var xhttp = new XMLHttpRequest();
             
             xhttp.open("POST", url, true);
@@ -35,12 +51,12 @@ class LoginContainer extends Component {
                     console.log(xhttp);
                 }
             };*/
-        fetch( url, params )
+        /*fetch( url, params )
         .then( response => {  
             console.log(response);
             console.log(response.headers.getAll); 
             console.log(response.status);
-        })
+        })*/
             //.catch( e => console.error( 'Something went wrong' ) );
         
         
@@ -59,8 +75,8 @@ class LoginContainer extends Component {
                         window.location.replace("/login")
                     }
             });*/
-            
-    }
+    }        
+   
 
     getData = () => {
         var payload = { username: this.user, password: this.password, token: 'token' }

@@ -2,14 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-
+import './style.css';
+import holder from './placeholder.png';
 
 
 
 const Login = ({ getData, getUser, getPass}) => {
     return (
-        <div>
+        <div className="login">
             <form onSubmit={getData} method='post' >
+                <div>
+                    <img src={holder} alt="" />
+                </div>
                 <div>
                     <TextField
                         name="username"

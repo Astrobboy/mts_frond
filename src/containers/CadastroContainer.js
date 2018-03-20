@@ -4,17 +4,43 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import * as actions from './../actions';
 import { bindActionCreators } from 'redux';
-import Cadastro from './../components/Cadastro';
+import Cadastro from './../components/Cadastro/';
+
+import { qri } from './../funcion/funciones';
+
+var QRCode = require('qrcode-react');
+//var fs = require('fs');
+
+const invoice_number = '';
+const total = '';
+const pb = true;
+const imagenes = new Array();
 
 class CadastroContainer extends Component {
-  
+
+    qr_generate = () => {
+        console.log(this.invoice_number);
+        console.log(this.total);
+        var hola = qri(this.invoice_number, this.total);
+        console.log(hola);
+    }
+
+
+    getInvoice_number = event => {
+        this.invoice_number = event.target.value
+    }
+    getTotal = event => {
+        this.total = event.target.value
+    }
+
     render() {
-    return (
-      <div>
-        <Cadastro />
-      </div>
-    )
-  }
+        return (
+            <div>
+                <Cadastro getTotal={this.getTotal} getInvoice_number={this.getInvoice_number} qr_generate={this.qr_generate} />
+               
+            </div>
+        )
+    }
 }
 
 //actions creators
